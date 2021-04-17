@@ -8,6 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,22 +16,27 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
-public class TableController implements Initializable {
+public class ControllerCamperTable implements Initializable {
 
     @FXML
-    private TableView<ModelTable> tvCampers;
+    private TableView<ModelCamperTable> tvCampers;
     @FXML
-    private TableColumn<ModelTable, String> col_id;
+    private TableColumn<ModelCamperTable, String> col_id;
     @FXML
-    private TableColumn<ModelTable, String> col_last_name;
+    private TableColumn<ModelCamperTable, String> col_last_name;
     @FXML
-    private TableColumn<ModelTable, String> col_first_name;
+    private TableColumn<ModelCamperTable, String> col_first_name;
     @FXML
-    private TableColumn<ModelTable, String> col_contact;
+    private TableColumn<ModelCamperTable, String> col_contact;
     @FXML
-    private TableColumn<ModelTable, String> col_comments;
+    private TableColumn<ModelCamperTable, String> col_comments;
 
-    ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
+    ObservableList<ModelCamperTable> oblist = FXCollections.observableArrayList();
+
+    @FXML
+    private void switchToPrescriptions() throws IOException {
+        App.setRoot("prescription_table");
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -38,7 +44,7 @@ public class TableController implements Initializable {
         try (Connection con = DBDriver.getConnection()) {
             ResultSet rs = con.createStatement().executeQuery("select * from campers");
             while (rs.next()) {
-                oblist.add(new ModelTable(rs.getString("camper_id"), rs.getString("last_name"), rs.getString("first_name"), rs.getString("contact"), rs.getString("comments")));
+                oblist.add(new ModelCamperTable(rs.getString("camper_id"), rs.getString("last_name"), rs.getString("first_name"), rs.getString("contact"), rs.getString("comments")));
             }
         }
         catch (SQLException throwables) {

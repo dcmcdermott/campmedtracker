@@ -1,10 +1,10 @@
 package org.example;
 
-public class ModelTable {
+public class ModelCamperTable {
 
     String id, last_name, first_name, contact, comments;
 
-    public ModelTable(String id, String last_name, String first_name, String contact, String comments) {
+    public ModelCamperTable(String id, String last_name, String first_name, String contact, String comments) {
         this.id = id;
         this.last_name = last_name;
         this.first_name = first_name;
