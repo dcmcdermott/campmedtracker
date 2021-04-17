@@ -19,19 +19,19 @@ import java.util.ResourceBundle;
 public class ControllerPrescriptionTable implements Initializable {
 
     @FXML
-    private TableView<ModelCamperTable> tvPrescriptions;
+    private TableView<ModelPrescriptionTable> tvPrescriptions;
     @FXML
-    private TableColumn<ModelCamperTable, String> col_id;
+    private TableColumn<ModelPrescriptionTable, String> col_id;
     @FXML
-    private TableColumn<ModelCamperTable, String> col_med_name;
+    private TableColumn<ModelPrescriptionTable, String> col_med_name;
     @FXML
-    private TableColumn<ModelCamperTable, String> col_dose;
+    private TableColumn<ModelPrescriptionTable, String> col_dose;
     @FXML
-    private TableColumn<ModelCamperTable, String> col_admin_time;
+    private TableColumn<ModelPrescriptionTable, String> col_admin_time;
     @FXML
-    private TableColumn<ModelCamperTable, String> col_camper_id;
+    private TableColumn<ModelPrescriptionTable, String> col_camper_id;
 
-    ObservableList<ModelCamperTable> oblist = FXCollections.observableArrayList();
+    ObservableList<ModelPrescriptionTable> oblist = FXCollections.observableArrayList();
 
     @FXML
     private void switchToCampers() throws IOException {
@@ -44,7 +44,7 @@ public class ControllerPrescriptionTable implements Initializable {
         try (Connection con = DBDriver.getConnection()) {
             ResultSet rs = con.createStatement().executeQuery("select * from prescriptions");
             while (rs.next()) {
-                oblist.add(new ModelCamperTable(rs.getString("id"), rs.getString("medname"), rs.getString("dose"), rs.getString("admintime"), rs.getString("userid")));
+                oblist.add(new ModelPrescriptionTable(rs.getString("id"), rs.getString("medname"), rs.getString("dose"), rs.getString("admintime"), rs.getString("userid")));
             }
         }
         catch (SQLException throwables) {
