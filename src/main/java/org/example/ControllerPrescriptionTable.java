@@ -44,7 +44,7 @@ public class ControllerPrescriptionTable implements Initializable {
         try (Connection con = DBDriver.getConnection()) {
             ResultSet rs = con.createStatement().executeQuery("select * from prescriptions");
             while (rs.next()) {
-                oblist.add(new ModelCamperTable(rs.getString("camper_id"), rs.getString("last_name"), rs.getString("first_name"), rs.getString("contact"), rs.getString("comments")));
+                oblist.add(new ModelCamperTable(rs.getString("id"), rs.getString("medname"), rs.getString("dose"), rs.getString("admintime"), rs.getString("userid")));
             }
         }
         catch (SQLException throwables) {
