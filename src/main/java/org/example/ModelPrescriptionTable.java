@@ -1,3 +1,9 @@
+/*
+ * Author: Devin McDermott
+ * Adventure Camp Med Tracker
+ * April 2021
+ */
+
 package org.example;
 
 public class ModelPrescriptionTable {

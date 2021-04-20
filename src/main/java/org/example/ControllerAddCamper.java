@@ -1,10 +1,15 @@
+/*
+ * Author: Devin McDermott
+ * Adventure Camp Med Tracker
+ * April 2021
+ */
+
 package org.example;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +18,10 @@ import java.sql.SQLException;
 
 public class ControllerAddCamper {
 
+    // camper table list model
+    ObservableList<ModelCamperTable> oblist = FXCollections.observableArrayList();
+
+    // text fields
     public TextField tfLastName;
     public TextField tfFirstName;
     public TextField tfContact;
@@ -22,8 +31,6 @@ public class ControllerAddCamper {
     private void switchToCampers() throws IOException {
         App.setRoot("camper_table");
     }
-
-    ObservableList<ModelCamperTable> oblist = FXCollections.observableArrayList();
 
     @FXML
     private void addCamper() throws IOException {
