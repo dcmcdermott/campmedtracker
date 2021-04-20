@@ -10,7 +10,7 @@
             <Label text="Prescriptions" />
             <TableView fx:id="tvPrescriptions" prefHeight="200.0" prefWidth="200.0">
                 <columns>
-                    <TableColumn fx:id="col_id" prefWidth="75.0" text="Prescriptions ID" />
+                    <TableColumn fx:id="col_id" prefWidth="75.0" text="Med ID" />
                     <TableColumn fx:id="col_med_name" prefWidth="75.0" text="Medication" />
                     <TableColumn fx:id="col_dose" prefWidth="75.0" text="Dose" />
                     <TableColumn fx:id="col_admin_time" prefWidth="75.0" text="Administration Time" />
