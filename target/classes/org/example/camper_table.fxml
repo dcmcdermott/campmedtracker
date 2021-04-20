@@ -21,6 +21,7 @@
                </columnResizePolicy>
             </TableView>
          <Button fx:id="btnSwitchToPrescriptions" mnemonicParsing="false" onAction="#switchToPrescriptions" text="Switch to Prescriptions" />
+          <Button fx:id="btnSwitchToAddCamper" mnemonicParsing="false" onAction="#switchToAddCamper" text="Add Camper" />
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
