@@ -11,10 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ControllerAddCamper {
 
@@ -26,6 +23,7 @@ public class ControllerAddCamper {
     public TextField tfFirstName;
     public TextField tfContact;
     public TextField tfComments;
+    public static String camperID;
 
     @FXML
     private void switchToCampers() throws IOException {
@@ -41,14 +39,14 @@ public class ControllerAddCamper {
             String query = " insert into campers (last_name, first_name, contact, comments)"
                     + " values (?, ?, ?, ?)";
 
-            // create the mysql preparedstatement
-            PreparedStatement preparedStmt = con.prepareStatement(query);
+            // create the mysql prepared statement
+            PreparedStatement preparedStmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStmt.setString (1, tfLastName.getText());
             preparedStmt.setString (2, tfFirstName.getText());
             preparedStmt.setString (3, tfContact.getText());
             preparedStmt.setString (4, tfComments.getText());
 
-            // execute the preparedstatement
+            // execute the prepared statement
             preparedStmt.execute();
 
             // update the campers table
@@ -60,11 +58,18 @@ public class ControllerAddCamper {
                         rs.getString("contact"),
                         rs.getString("comments")));
             }
+
+            ResultSet rs2 =preparedStmt.getGeneratedKeys();
+            if (rs2.next()) {
+                camperID = rs2.getString(1);
+            }
+
             System.out.println("Camper added successfully");
             App.setRoot("add_prescriptions");
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
     }
 }
