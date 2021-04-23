@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ControllerAddPrescriptions">
+   <children>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="10.0">
+         <children>
+            <Label text="Add Prescriptions">
+               <font>
+                  <Font size="33.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="lblCamperName" text="?Camper Name?">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="25.0">
+               <children>
+                  <Label text="Medication Name" />
+                  <TextField fx:id="tfMedName" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="50.0" prefWidth="200.0" spacing="90.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" text="Dose" />
+                  <TextField fx:id="tfDose" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label text="Administration Time" />
+                  <TextField fx:id="tfAdminTime" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Button fx:id="btnFinish" mnemonicParsing="false" onAction="#addPrescriptions" text="Finish " />
+                  <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#switchToAddCamper" text="Back" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
