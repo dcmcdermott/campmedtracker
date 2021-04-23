@@ -54,7 +54,7 @@
                      </cursor></TextField>
                </children>
             </HBox>
-            <ListView fx:id="lvNewMeds" maxWidth="-Infinity" prefHeight="150.0" prefWidth="400.0" />
+            <ListView fx:id="lvNewMeds" editable="true" maxWidth="-Infinity" prefHeight="150.0" prefWidth="400.0" />
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="400.0">
                <children>
                   <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#switchToAddCamper" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="Back">

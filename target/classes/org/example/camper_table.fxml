@@ -17,7 +17,7 @@
             <TableView fx:id="tvCampers" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0">
               <columns>
                 <TableColumn fx:id="col_id" prefWidth="20.0" text="Camper ID" />
-                <TableColumn fx:id="col_last_name" prefWidth="384.0" text="Last Name" />
+                <TableColumn fx:id="col_last_name" prefWidth="75.0" text="Last Name" />
                   <TableColumn fx:id="col_first_name" prefWidth="75.0" text="First Name" />
                   <TableColumn fx:id="col_contact" prefWidth="75.0" text="Contact" />
                   <TableColumn fx:id="col_comments" prefWidth="75.0" text="Comments" />

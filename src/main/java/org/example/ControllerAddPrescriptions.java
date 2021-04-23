@@ -1,10 +1,10 @@
 package org.example;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +22,14 @@ public class ControllerAddPrescriptions implements Initializable {
     public String camperID = ControllerAddCamper.currentCamperID;
 
     @FXML
+    public ListView<String> lvNewMeds;
+    ObservableList<String> list = FXCollections.observableArrayList();
+
+    @FXML
     public void initialize(URL location, ResourceBundle resources) {
+
+        lvNewMeds.setItems(list);
+
         try (Connection con = DBDriver.getConnection()) {
 
             // mysql statement
@@ -53,6 +60,8 @@ public class ControllerAddPrescriptions implements Initializable {
 
         try (Connection con = DBDriver.getConnection()) {
 
+            lvNewMeds.getItems().add(tfMedName.getText());
+
             // mysql statement
             String query = " insert into prescriptions (medname, dose, admintime, userid)"
                     + " values (?, ?, ?, ?)";
@@ -67,8 +76,12 @@ public class ControllerAddPrescriptions implements Initializable {
             // execute the prepared statement
             preparedStmt.execute();
 
+
             System.out.println("Prescriptions added successfully");
-            App.setRoot("add_prescriptions");
+            tfMedName.clear();
+            tfDose.clear();
+            tfAdminTime.clear();
+
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();

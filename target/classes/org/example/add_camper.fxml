@@ -1,50 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ControllerAddCamper">
    <children>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
+      <VBox alignment="CENTER" prefHeight="700.0" prefWidth="1200.0" spacing="20.0">
          <children>
-            <Label text="Add Camper">
-               <VBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </VBox.margin>
+            <Label alignment="CENTER" prefHeight="121.0" prefWidth="276.0" style="-fx-font-weight: bold;" text="Add a Camper">
+               <font>
+                  <Font size="35.0" />
+               </font>
             </Label>
-            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="200.0" spacing="10.0">
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Label text="Last Name" />
-                  <TextField fx:id="tfLastName" />
+                  <TextField fx:id="tfLastName">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor></TextField>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="46.0" prefHeight="38.0" prefWidth="600.0" spacing="10.0">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="46.0" prefHeight="50.0" prefWidth="600.0" spacing="10.0">
                <children>
                   <Label text="First Name" />
-                  <TextField fx:id="tfFirstName" />
+                  <TextField fx:id="tfFirstName">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor></TextField>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="65.0" prefHeight="38.0" prefWidth="600.0" spacing="25.0">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="65.0" prefHeight="50.0" prefWidth="600.0" spacing="25.0">
                <children>
                   <Label text="Contact" />
-                  <TextField fx:id="tfContact" />
+                  <TextField fx:id="tfContact">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor></TextField>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="600.0" spacing="10.0">
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" spacing="10.0">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
                <children>
                   <Label text="Comments" />
-                  <TextField fx:id="tfComments" />
+                  <TextField fx:id="tfComments">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor></TextField>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="200.0" spacing="20.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button fx:id="btnAddCamper" mnemonicParsing="false" text="Next" onAction="#addCamper" />
-                  <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToCampers" text="Cancel" />
+                  <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToCampers" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="Cancel">
+                     <HBox.margin>
+                        <Insets left="120.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
+                  <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="28.0" text="Next:">
+                     <HBox.margin>
+                        <Insets left="675.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button fx:id="btnAddCamper" mnemonicParsing="false" onAction="#addCamper" scaleX="1.5" scaleY="1.5" style="-fx-background-color: green; -fx-font-weight: bold;" text="Add Prescriptions" textFill="#fffdfd">
+
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
                </children>
+               <VBox.margin>
+                  <Insets top="70.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>
