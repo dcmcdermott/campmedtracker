@@ -61,7 +61,7 @@ public class ControllerAddCamper {
                         rs.getString("comments")));
             }
             System.out.println("Camper added successfully");
-            App.setRoot("camper_table");
+            App.setRoot("add_prescriptions");
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
