@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ControllerCamperTable">
    <children>
-      <VBox alignment="CENTER" prefHeight="322.0" prefWidth="424.0" spacing="20.0">
-            <Label text="Campers" />
-            <TableView fx:id="tvCampers" prefHeight="200.0" prefWidth="200.0">
+      <VBox alignment="CENTER" prefHeight="700.0" prefWidth="1200.0" spacing="20.0">
+            <Label style="-fx-font-weight: bold;" text="Adventure Campers">
+            <font>
+               <Font size="35.0" />
+            </font></Label>
+            <TableView fx:id="tvCampers" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0">
               <columns>
-                <TableColumn fx:id="col_id" prefWidth="75.0" text="Camper ID" />
-                <TableColumn fx:id="col_last_name" prefWidth="75.0" text="Last Name" />
+                <TableColumn fx:id="col_id" prefWidth="20.0" text="Camper ID" />
+                <TableColumn fx:id="col_last_name" prefWidth="384.0" text="Last Name" />
                   <TableColumn fx:id="col_first_name" prefWidth="75.0" text="First Name" />
                   <TableColumn fx:id="col_contact" prefWidth="75.0" text="Contact" />
                   <TableColumn fx:id="col_comments" prefWidth="75.0" text="Comments" />
@@ -19,9 +25,43 @@
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin>
             </TableView>
-         <Button fx:id="btnSwitchToPrescriptions" mnemonicParsing="false" onAction="#switchToPrescriptions" text="Switch to Prescriptions" />
-          <Button fx:id="btnSwitchToAddCamper" mnemonicParsing="false" onAction="#switchToAddCamper" text="Add Camper" />
+         <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <children>
+               <Button fx:id="btnHome" mnemonicParsing="false" text="Home">
+                  <HBox.margin>
+                     <Insets left="150.0" />
+                  </HBox.margin>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <effect>
+                     <DropShadow blurType="ONE_PASS_BOX" />
+                  </effect>
+               </Button>
+               <Button fx:id="btnSwitchToPrescriptions" mnemonicParsing="false" onAction="#switchToPrescriptions" text="View Prescriptions">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <effect>
+                     <DropShadow />
+                  </effect></Button>
+                <Button fx:id="btnSwitchToAddCamper" mnemonicParsing="false" onAction="#switchToAddCamper" scaleX="1.5" scaleY="1.5" style="-fx-background-color: green;" text="➕ Add Camper" textFill="#fffdfd">
+                  <HBox.margin>
+                     <Insets left="530.0" />
+                  </HBox.margin>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <effect>
+                     <DropShadow />
+                  </effect>
+               </Button>
+            </children>
+         </HBox>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>

@@ -18,17 +18,11 @@ public class ControllerAddCamper {
     // camper table list model
     ObservableList<ModelCamperTable> oblist = FXCollections.observableArrayList();
 
-    // text fields
     public TextField tfLastName;
     public TextField tfFirstName;
     public TextField tfContact;
     public TextField tfComments;
-    public static String camperID;
-
-    @FXML
-    private void switchToCampers() throws IOException {
-        App.setRoot("camper_table");
-    }
+    public static String currentCamperID;
 
     @FXML
     private void addCamper() throws IOException {
@@ -61,7 +55,7 @@ public class ControllerAddCamper {
 
             ResultSet rs2 =preparedStmt.getGeneratedKeys();
             if (rs2.next()) {
-                camperID = rs2.getString(1);
+                currentCamperID = rs2.getString(1);
             }
 
             System.out.println("Camper added successfully");
@@ -71,5 +65,10 @@ public class ControllerAddCamper {
             throwables.printStackTrace();
         }
 
+    }
+
+    @FXML
+    private void switchToCampers() throws IOException {
+        App.setRoot("camper_table");
     }
 }

@@ -19,7 +19,7 @@ public class ControllerAddPrescriptions implements Initializable {
     public TextField tfAdminTime;
     public Button btnAdd;
     public Button btnCancel;
-    public String camperID = ControllerAddCamper.camperID;
+    public String camperID = ControllerAddCamper.currentCamperID;
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
@@ -48,17 +48,6 @@ public class ControllerAddPrescriptions implements Initializable {
         }
     }
 
-
-        @FXML
-    private void switchToAddCamper() throws IOException {
-        App.setRoot("add_camper");
-    }
-
-    @FXML
-    private void switchToCampers() throws IOException {
-        App.setRoot("camper_table");
-    }
-
     @FXML
     private void addPrescriptions() throws IOException {
 
@@ -84,5 +73,15 @@ public class ControllerAddPrescriptions implements Initializable {
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    @FXML
+    private void switchToAddCamper() throws IOException {
+        App.setRoot("add_camper");
+    }
+
+    @FXML
+    private void switchToCampers() throws IOException {
+        App.setRoot("camper_table");
     }
 }
