@@ -42,8 +42,9 @@
             </HBox>
             <HBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Button fx:id="btnFinish" mnemonicParsing="false" onAction="#addPrescriptions" text="Finish " />
+                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addPrescriptions" text="Add" />
                   <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#switchToAddCamper" text="Back" />
+                  <Button fx:id="btnFinish" mnemonicParsing="false" onAction="#switchToCampers" text="Finish" />
                </children>
             </HBox>
          </children>
