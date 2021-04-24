@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,14 +22,19 @@ public class ControllerAddPrescriptions implements Initializable {
     public Button btnCancel;
     public String camperID = ControllerAddCamper.currentCamperID;
 
+    // setup table view
     @FXML
-    public ListView<String> lvNewMeds;
-    ObservableList<String> list = FXCollections.observableArrayList();
+    private TableView<ModelPrescriptionTable> tvNewMeds;
+    @FXML
+    private TableColumn<ModelPrescriptionTable, String> col_med_name_new;
+    @FXML
+    private TableColumn<ModelPrescriptionTable, String> col_dose_new;
+    @FXML
+    private TableColumn<ModelPrescriptionTable, String> col_admin_time_new;
+
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-
-        lvNewMeds.setItems(list);
 
         try (Connection con = DBDriver.getConnection()) {
 
@@ -58,15 +64,15 @@ public class ControllerAddPrescriptions implements Initializable {
     @FXML
     private void addPrescriptions() throws IOException {
 
+        ObservableList<ModelPrescriptionTable> oblist = FXCollections.observableArrayList();
+
         try (Connection con = DBDriver.getConnection()) {
 
-            lvNewMeds.getItems().add(tfMedName.getText());
-
-            // mysql statement
+            // sql insert statement
             String query = " insert into prescriptions (medname, dose, admintime, userid)"
                     + " values (?, ?, ?, ?)";
 
-            // create the mysql prepared statement
+            // create sql prepared statement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setString (1, tfMedName.getText());
             preparedStmt.setString (2, tfDose.getText());
@@ -76,16 +82,43 @@ public class ControllerAddPrescriptions implements Initializable {
             // execute the prepared statement
             preparedStmt.execute();
 
+            // sql new user prescriptions statement
+            String query2 = "select * from prescriptions where userid = ?";
 
-            System.out.println("Prescriptions added successfully");
+            // create sql prepared statement
+            PreparedStatement preparedStmt2 = con.prepareStatement(query2);
+            preparedStmt2.setString (1, camperID);
+
+            // execute the prepared statement
+            ResultSet rs = preparedStmt2.executeQuery();
+
+            // update the observable list
+            while (rs.next()) {
+                oblist.add(new ModelPrescriptionTable(
+                        rs.getString("id"),
+                        rs.getString("medname"),
+                        rs.getString("dose"),
+                        rs.getString("admintime"),
+                        rs.getString("userid")));
+
+            // update tableview and clear text fields
+            tvNewMeds.setItems(oblist);
             tfMedName.clear();
             tfDose.clear();
             tfAdminTime.clear();
 
+            System.out.println("Prescriptions added successfully");
+            }
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        // update the tableview
+        col_med_name_new.setCellValueFactory(new PropertyValueFactory<>("medname"));
+        col_dose_new.setCellValueFactory(new PropertyValueFactory<>("dose"));
+        col_admin_time_new.setCellValueFactory(new PropertyValueFactory<>("admintime"));
+        tvNewMeds.setItems(oblist);
     }
 
     @FXML
