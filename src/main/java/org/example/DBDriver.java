@@ -10,12 +10,12 @@ import java.sql.*;
 
 public class DBDriver {
 
-    private static String url = "jdbc:mysql://localhost:3306/medtrackertest";
-    private static String user = "root";
-    private static String password = "";
+    final static String URL = "jdbc:mysql://localhost:3306/medtrackertest";
+    final static String USER = "root";
+    final static String PASSWORD = "";
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url,user,password);
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
 }

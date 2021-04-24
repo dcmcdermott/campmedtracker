@@ -33,7 +33,7 @@ public class ControllerAddCamper {
             String query = " insert into campers (last_name, first_name, contact, comments)"
                     + " values (?, ?, ?, ?)";
 
-            // create the mysql prepared statement
+            // create sql prepared statement
             PreparedStatement preparedStmt = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStmt.setString (1, tfLastName.getText());
             preparedStmt.setString (2, tfFirstName.getText());
@@ -68,7 +68,7 @@ public class ControllerAddCamper {
     }
 
     @FXML
-    private void switchToCampers() throws IOException {
-        App.setRoot("camper_table");
+    private void switchToDashboard() throws IOException {
+        App.setRoot("dashboard");
     }
 }

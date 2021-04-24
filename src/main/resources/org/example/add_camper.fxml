@@ -57,7 +57,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToCampers" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="Cancel">
+                  <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="Cancel">
                      <HBox.margin>
                         <Insets left="120.0" />
                      </HBox.margin>

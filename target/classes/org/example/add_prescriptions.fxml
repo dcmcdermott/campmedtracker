@@ -54,7 +54,13 @@
                      </cursor></TextField>
                </children>
             </HBox>
-            <ListView fx:id="lvNewMeds" editable="true" maxWidth="-Infinity" prefHeight="150.0" prefWidth="400.0" />
+            <TableView fx:id="tvNewMeds" maxWidth="-Infinity" prefHeight="150.0" prefWidth="500.0">
+              <columns>
+                <TableColumn fx:id="col_med_name_new" prefWidth="250.0" text="Medication" />
+                  <TableColumn fx:id="col_dose_new" prefWidth="115.0" text="Dose" />
+                  <TableColumn fx:id="col_admin_time_new" prefWidth="134.0" text="Admin Time" />
+              </columns>
+            </TableView>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="400.0">
                <children>
                   <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#switchToAddCamper" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="Back">

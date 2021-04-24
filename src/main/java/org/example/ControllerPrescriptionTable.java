@@ -39,11 +39,6 @@ public class ControllerPrescriptionTable implements Initializable {
 
     ObservableList<ModelPrescriptionTable> oblist = FXCollections.observableArrayList();
 
-    @FXML
-    private void switchToCampers() throws IOException {
-        App.setRoot("camper_table");
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -66,4 +61,12 @@ public class ControllerPrescriptionTable implements Initializable {
         tvPrescriptions.setItems(oblist);
     }
 
+    @FXML
+    private void switchToCampers() throws IOException {
+        App.setRoot("camper_table");
+    }
+    @FXML
+    private void switchToDashboard() throws IOException {
+        App.setRoot("dashboard");
+    }
 }

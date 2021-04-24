@@ -32,7 +32,7 @@
 
             <HBox alignment="CENTER_LEFT" spacing="20.0">
                 <children>
-                    <Button fx:id="btnHome" mnemonicParsing="false" text="Home">
+                    <Button fx:id="btnHome" mnemonicParsing="false" onAction="#switchToDashboard" text="Home">
                         <HBox.margin>
                             <Insets left="170.0" />
                         </HBox.margin>

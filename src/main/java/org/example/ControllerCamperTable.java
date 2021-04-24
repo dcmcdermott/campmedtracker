@@ -40,16 +40,6 @@ public class ControllerCamperTable implements Initializable {
 
     ObservableList<ModelCamperTable> oblist = FXCollections.observableArrayList();
 
-    @FXML
-    private void switchToPrescriptions() throws IOException {
-        App.setRoot("prescription_table");
-    }
-
-    @FXML
-    private void switchToAddCamper() throws IOException {
-        App.setRoot("add_camper");
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -70,5 +60,18 @@ public class ControllerCamperTable implements Initializable {
         col_comments.setCellValueFactory(new PropertyValueFactory<>("comments"));
 
         tvCampers.setItems(oblist);
+    }
+
+    @FXML
+    private void switchToPrescriptions() throws IOException {
+        App.setRoot("prescription_table");
+    }
+    @FXML
+    private void switchToAddCamper() throws IOException {
+        App.setRoot("add_camper");
+    }
+    @FXML
+    private void switchToDashboard() throws IOException {
+        App.setRoot("dashboard");
     }
 }
