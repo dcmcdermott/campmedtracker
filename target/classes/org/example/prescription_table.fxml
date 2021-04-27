@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ControllerPrescriptionTable">
+<AnchorPane style="-fx-background-color: #faf3e1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ControllerPrescriptionTable">
     <children>
         <VBox alignment="CENTER" prefHeight="700.0" prefWidth="1200.0" spacing="20.0">
             <Label style="-fx-font-weight: bold;" text="Prescriptions">
@@ -33,7 +33,7 @@
 
             <HBox alignment="CENTER_LEFT" spacing="20.0">
                 <children>
-                    <Button fx:id="btnHome" mnemonicParsing="false" onAction="#switchToDashboard" text="Home">
+                    <Button fx:id="btnHome" mnemonicParsing="false" onAction="#switchToDashboard" style="-fx-background-color: DBE4EE;" text="🏠 Home">
                         <HBox.margin>
                             <Insets left="170.0" />
                         </HBox.margin>
@@ -44,7 +44,7 @@
                             <DropShadow blurType="ONE_PASS_BOX" />
                         </effect>
                     </Button>
-                    <Button fx:id="btnSwitchToCampers" mnemonicParsing="false" onAction="#switchToCampers" text="View Campers">
+                    <Button fx:id="btnSwitchToCampers" mnemonicParsing="false" onAction="#switchToCampers" style="-fx-background-color: DBE4EE;" text="🙋‍♂️ Campers">
                         <cursor>
                             <Cursor fx:constant="HAND" />
                         </cursor>
