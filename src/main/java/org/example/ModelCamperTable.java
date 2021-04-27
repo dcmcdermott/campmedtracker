@@ -8,14 +8,24 @@ package org.example;
 
 public class ModelCamperTable {
 
-    String id, last_name, first_name, contact, comments;
+    String id, last_name, first_name, dob, guardian, contact, note;
 
-    public ModelCamperTable(String id, String last_name, String first_name, String contact, String comments) {
+    public ModelCamperTable(String id,
+                            String last_name,
+                            String first_name,
+                            String dob,
+                            String guardian,
+                            String contact,
+                            String note) {
+
         this.id = id;
         this.last_name = last_name;
         this.first_name = first_name;
+        this.dob = dob;
+        this.guardian = guardian;
         this.contact = contact;
-        this.comments = comments;
+        this.note = note;
+
     }
 
     public String getId() {
@@ -50,11 +60,27 @@ public class ModelCamperTable {
         this.first_name = first_name;
     }
 
-    public String getComments() {
-        return comments;
+    public String getDob() {
+        return dob;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getGuardian() {
+        return guardian;
+    }
+
+    public void setGuardian(String guardian) {
+        this.guardian = guardian;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

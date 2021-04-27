@@ -34,9 +34,13 @@ public class ControllerCamperTable implements Initializable {
     @FXML
     private TableColumn<ModelCamperTable, String> col_first_name;
     @FXML
+    private TableColumn<ModelCamperTable, String> col_dob;
+    @FXML
+    private TableColumn<ModelCamperTable, String> col_guardian;
+    @FXML
     private TableColumn<ModelCamperTable, String> col_contact;
     @FXML
-    private TableColumn<ModelCamperTable, String> col_comments;
+    private TableColumn<ModelCamperTable, String> col_note;
 
     ObservableList<ModelCamperTable> oblist = FXCollections.observableArrayList();
 
@@ -46,7 +50,13 @@ public class ControllerCamperTable implements Initializable {
         try (Connection con = DBDriver.getConnection()) {
             ResultSet rs = con.createStatement().executeQuery("select * from campers");
             while (rs.next()) {
-                oblist.add(new ModelCamperTable(rs.getString("camper_id"), rs.getString("last_name"), rs.getString("first_name"), rs.getString("contact"), rs.getString("comments")));
+                oblist.add(new ModelCamperTable(rs.getString("id"),
+                        rs.getString("last_name"),
+                        rs.getString("first_name"),
+                        rs.getString("dob"),
+                        rs.getString("guardian"),
+                        rs.getString("contact"),
+                        rs.getString("note")));
             }
         }
         catch (SQLException throwables) {
@@ -56,8 +66,10 @@ public class ControllerCamperTable implements Initializable {
         col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_last_name.setCellValueFactory(new PropertyValueFactory<>("last_name"));
         col_first_name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
+        col_dob.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        col_guardian.setCellValueFactory(new PropertyValueFactory<>("guardian"));
         col_contact.setCellValueFactory(new PropertyValueFactory<>("contact"));
-        col_comments.setCellValueFactory(new PropertyValueFactory<>("comments"));
+        col_note.setCellValueFactory(new PropertyValueFactory<>("note"));
 
         tvCampers.setItems(oblist);
     }

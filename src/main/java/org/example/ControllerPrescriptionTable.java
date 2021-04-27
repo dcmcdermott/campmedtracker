@@ -33,6 +33,8 @@ public class ControllerPrescriptionTable implements Initializable {
     @FXML
     private TableColumn<ModelPrescriptionTable, String> col_dose;
     @FXML
+    private TableColumn<ModelPrescriptionTable, String> col_dose_unit;
+    @FXML
     private TableColumn<ModelPrescriptionTable, String> col_admin_time;
     @FXML
     private TableColumn<ModelPrescriptionTable, String> col_camper_id;
@@ -45,7 +47,13 @@ public class ControllerPrescriptionTable implements Initializable {
         try (Connection con = DBDriver.getConnection()) {
             ResultSet rs = con.createStatement().executeQuery("select * from prescriptions");
             while (rs.next()) {
-                oblist.add(new ModelPrescriptionTable(rs.getString("id"), rs.getString("medname"), rs.getString("dose"), rs.getString("admintime"), rs.getString("userid")));
+                oblist.add(new ModelPrescriptionTable(
+                        rs.getString("id"),
+                        rs.getString("name"),
+                        rs.getString("dose"),
+                        rs.getString("dose_unit"),
+                        rs.getString("time"),
+                        rs.getString("camperid")));
             }
         }
         catch (SQLException throwables) {
@@ -53,10 +61,11 @@ public class ControllerPrescriptionTable implements Initializable {
         }
 
         col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        col_med_name.setCellValueFactory(new PropertyValueFactory<>("medname"));
+        col_med_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_dose.setCellValueFactory(new PropertyValueFactory<>("dose"));
-        col_admin_time.setCellValueFactory(new PropertyValueFactory<>("admintime"));
-        col_camper_id.setCellValueFactory(new PropertyValueFactory<>("userid"));
+        col_dose_unit.setCellValueFactory(new PropertyValueFactory<>("dose_unit"));
+        col_admin_time.setCellValueFactory(new PropertyValueFactory<>("time"));
+        col_camper_id.setCellValueFactory(new PropertyValueFactory<>("camperid"));
 
         tvPrescriptions.setItems(oblist);
     }

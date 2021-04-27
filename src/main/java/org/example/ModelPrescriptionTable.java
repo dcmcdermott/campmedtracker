@@ -8,14 +8,15 @@ package org.example;
 
 public class ModelPrescriptionTable {
 
-    String id, medname, dose, admintime, userid;
+    String id, name, dose, dose_unit, time, camperid;
 
-    public ModelPrescriptionTable(String id, String medname, String dose, String admintime, String userid) {
+    public ModelPrescriptionTable(String id, String name, String dose, String dose_unit, String time, String camperid) {
         this.id = id;
-        this.medname = medname;
+        this.name = name;
         this.dose = dose;
-        this.admintime = admintime;
-        this.userid = userid;
+        this.dose_unit = dose_unit;
+        this.time = time;
+        this.camperid = camperid;
     }
 
     public String getId() {
@@ -26,35 +27,43 @@ public class ModelPrescriptionTable {
         this.id = id;
     }
 
-    public String getMedname() {
-        return medname;
+    public String getName() {
+        return name;
     }
 
-    public void setMedname(String medname) {
-        this.medname = medname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDose() {
         return dose;
     }
 
-    public void setDose(String dose) {
+    public void setDose(String dose_unit) {
+        this.dose_unit = dose_unit;
+    }
+
+    public String getDose_unit() {
+        return dose_unit;
+    }
+
+    public void setDose_unit(String dose) {
         this.dose = dose;
     }
 
-    public String getAdmintime() {
-        return admintime;
+    public String getTime() {
+        return time;
     }
 
-    public void setAdmintime(String admintime) {
-        this.admintime = admintime;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getCamperid() {
+        return camperid;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setCamperid(String camperid) {
+        this.camperid = camperid;
     }
 }

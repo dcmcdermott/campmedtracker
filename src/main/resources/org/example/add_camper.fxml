@@ -34,6 +34,22 @@
                      </cursor></TextField>
                </children>
             </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="373.0" prefHeight="50.0" prefWidth="600.0" spacing="25.0">
+               <children>
+                  <Label text="D.O.B." />
+                  <DatePicker fx:id="dpDOB" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0" spacing="25.0">
+               <children>
+                  <Label text="Guardian" />
+                  <TextField fx:id="tfGuardian">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+               </children>
+            </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="65.0" prefHeight="50.0" prefWidth="600.0" spacing="25.0">
                <children>
                   <Label text="Contact" />
@@ -49,7 +65,7 @@
                </VBox.margin>
                <children>
                   <Label text="Comments" />
-                  <TextField fx:id="tfComments">
+                  <TextField fx:id="tfNote">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor></TextField>

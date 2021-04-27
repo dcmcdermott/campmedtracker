@@ -45,19 +45,23 @@
                      </cursor></TextField>
                </children>
             </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="294.0" prefHeight="50.0" prefWidth="200.0" spacing="90.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" text="Dose Unit" />
+                  <ChoiceBox fx:id="cbDoseUnit" prefWidth="150.0" />
+               </children>
+            </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Label text="Administration Time" />
-                  <TextField fx:id="tfAdminTime">
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor></TextField>
+                  <ChoiceBox fx:id="cbTimes" prefWidth="150.0" />
                </children>
             </HBox>
             <TableView fx:id="tvNewMeds" maxWidth="-Infinity" prefHeight="150.0" prefWidth="500.0">
               <columns>
                 <TableColumn fx:id="col_med_name_new" prefWidth="250.0" text="Medication" />
                   <TableColumn fx:id="col_dose_new" prefWidth="115.0" text="Dose" />
+                  <TableColumn fx:id="col_dose_unit_new" prefWidth="75.0" text="Dose Unit" />
                   <TableColumn fx:id="col_admin_time_new" prefWidth="134.0" text="Admin Time" />
               </columns>
             </TableView>

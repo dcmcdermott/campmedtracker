@@ -19,8 +19,10 @@
                 <TableColumn fx:id="col_id" prefWidth="20.0" text="Camper ID" />
                 <TableColumn fx:id="col_last_name" prefWidth="75.0" text="Last Name" />
                   <TableColumn fx:id="col_first_name" prefWidth="75.0" text="First Name" />
+               <TableColumn fx:id="col_dob" prefWidth="75.0" text="D.O.B." />
+               <TableColumn fx:id="col_guardian" prefWidth="75.0" text="Guardian" />
                   <TableColumn fx:id="col_contact" prefWidth="75.0" text="Contact" />
-                  <TableColumn fx:id="col_comments" prefWidth="75.0" text="Comments" />
+                  <TableColumn fx:id="col_note" prefWidth="75.0" text="Note" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
