@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #faf3e1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ControllerAddAllergies">
+    <children>
+        <VBox alignment="CENTER" prefHeight="700.0" prefWidth="1200.0" spacing="20.0">
+            <children>
+                <Label alignment="CENTER" prefHeight="121.0" prefWidth="354.0" style="-fx-font-weight: bold;" text="Add Allergies">
+                    <font>
+                        <Font size="35.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="lblCamperName" text="?Camper Name?">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Label>
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <Label text="Allergy Name" />
+                        <TextField fx:id="tfAllergyName">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor></TextField>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="50.0" prefWidth="200.0" spacing="90.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" text="Reaction" />
+                        <TextField fx:id="tfReaction">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor></TextField>
+                    </children>
+                </HBox>
+                <TableView fx:id="tvNewAllergies" maxWidth="-Infinity" prefHeight="150.0" prefWidth="500.0">
+                    <columns>
+                        <TableColumn fx:id="col_allergy" prefWidth="225.0" text="Allergy" />
+                        <TableColumn fx:id="col_reaction" prefWidth="272.0" text="Reaction" />
+                    </columns>
+                </TableView>
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="400.0">
+                    <children>
+                        <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#switchToAddCamper" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold;" text="Back">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <DropShadow />
+                            </effect></Button>
+                        <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addAllergy" prefHeight="34.0" prefWidth="127.0" scaleX="1.5" scaleY="1.5" style="-fx-background-color: blue; -fx-text-fill: white; -fx-font-weight: bold;" text="➕ Add Allergy">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <DropShadow />
+                            </effect></Button>
+                        <Button fx:id="btnFinish" mnemonicParsing="false" onAction="#switchToCampers" scaleX="1.5" scaleY="1.5" style="-fx-background-color: green; -fx-font-weight: bold;" text="Finish" textFill="#fffdfd">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <effect>
+                                <DropShadow />
+                            </effect></Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

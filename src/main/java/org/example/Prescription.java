@@ -6,11 +6,11 @@
 
 package org.example;
 
-public class ModelPrescriptionTable {
+public class Prescription {
 
     String id, name, dose, dose_unit, time, camperid;
 
-    public ModelPrescriptionTable(String id, String name, String dose, String dose_unit, String time, String camperid) {
+    public Prescription(String id, String name, String dose, String dose_unit, String time, String camperid) {
         this.id = id;
         this.name = name;
         this.dose = dose;

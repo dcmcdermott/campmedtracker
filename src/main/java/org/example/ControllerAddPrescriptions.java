@@ -23,8 +23,6 @@ public class ControllerAddPrescriptions implements Initializable {
     public Label lblCamperName;
     public TextField tfMedName;
     public TextField tfDose;
-    public TextField tfDoseUnit;
-    public TextField tfAdminTime;
     public Button btnAdd;
     public Button btnCancel;
     public String camperID = ControllerAddCamper.currentCamperID;
@@ -72,15 +70,15 @@ public class ControllerAddPrescriptions implements Initializable {
 
     // setup table view
     @FXML
-    private TableView<ModelPrescriptionTable> tvNewMeds;
+    private TableView<Prescription> tvNewMeds;
     @FXML
-    private TableColumn<ModelPrescriptionTable, String> col_med_name_new;
+    private TableColumn<Prescription, String> col_med_name_new;
     @FXML
-    private TableColumn<ModelPrescriptionTable, String> col_dose_new;
+    private TableColumn<Prescription, String> col_dose_new;
     @FXML
-    private TableColumn<ModelPrescriptionTable, String> col_dose_unit_new;
+    private TableColumn<Prescription, String> col_dose_unit_new;
     @FXML
-    private TableColumn<ModelPrescriptionTable, String> col_admin_time_new;
+    private TableColumn<Prescription, String> col_admin_time_new;
 
 
     @FXML
@@ -120,7 +118,7 @@ public class ControllerAddPrescriptions implements Initializable {
     @FXML
     private void addPrescriptions() throws IOException {
 
-        ObservableList<ModelPrescriptionTable> oblist = FXCollections.observableArrayList();
+        ObservableList<Prescription> oblist = FXCollections.observableArrayList();
 
         try (Connection con = DBDriver.getConnection()) {
 
@@ -151,7 +149,7 @@ public class ControllerAddPrescriptions implements Initializable {
 
             // update the observable list
             while (rs.next()) {
-                oblist.add(new ModelPrescriptionTable(
+                oblist.add(new Prescription(
                         rs.getString("id"),
                         rs.getString("name"),
                         rs.getString("dose"),
@@ -185,7 +183,7 @@ public class ControllerAddPrescriptions implements Initializable {
     }
 
     @FXML
-    private void switchToCampers() throws IOException {
-        App.setRoot("camper_table");
+    private void switchToAllergies() throws IOException {
+        App.setRoot("add_allergies");
     }
 }

@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,7 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -26,23 +24,23 @@ import java.util.ResourceBundle;
 public class ControllerCamperTable implements Initializable {
 
     @FXML
-    private TableView<ModelCamperTable> tvCampers;
+    private TableView<Camper> tvCampers;
     @FXML
-    private TableColumn<ModelCamperTable, String> col_id;
+    private TableColumn<Camper, String> col_id;
     @FXML
-    private TableColumn<ModelCamperTable, String> col_last_name;
+    private TableColumn<Camper, String> col_last_name;
     @FXML
-    private TableColumn<ModelCamperTable, String> col_first_name;
+    private TableColumn<Camper, String> col_first_name;
     @FXML
-    private TableColumn<ModelCamperTable, String> col_dob;
+    private TableColumn<Camper, String> col_dob;
     @FXML
-    private TableColumn<ModelCamperTable, String> col_guardian;
+    private TableColumn<Camper, String> col_guardian;
     @FXML
-    private TableColumn<ModelCamperTable, String> col_contact;
+    private TableColumn<Camper, String> col_contact;
     @FXML
-    private TableColumn<ModelCamperTable, String> col_note;
+    private TableColumn<Camper, String> col_note;
 
-    ObservableList<ModelCamperTable> oblist = FXCollections.observableArrayList();
+    ObservableList<Camper> oblist = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,7 +48,7 @@ public class ControllerCamperTable implements Initializable {
         try (Connection con = DBDriver.getConnection()) {
             ResultSet rs = con.createStatement().executeQuery("select * from campers");
             while (rs.next()) {
-                oblist.add(new ModelCamperTable(rs.getString("id"),
+                oblist.add(new Camper(rs.getString("id"),
                         rs.getString("last_name"),
                         rs.getString("first_name"),
                         rs.getString("dob"),

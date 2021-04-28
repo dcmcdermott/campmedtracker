@@ -25,21 +25,21 @@ import java.util.ResourceBundle;
 public class ControllerPrescriptionTable implements Initializable {
 
     @FXML
-    private TableView<ModelPrescriptionTable> tvPrescriptions;
+    private TableView<Prescription> tvPrescriptions;
     @FXML
-    private TableColumn<ModelPrescriptionTable, String> col_id;
+    private TableColumn<Prescription, String> col_id;
     @FXML
-    private TableColumn<ModelPrescriptionTable, String> col_med_name;
+    private TableColumn<Prescription, String> col_med_name;
     @FXML
-    private TableColumn<ModelPrescriptionTable, String> col_dose;
+    private TableColumn<Prescription, String> col_dose;
     @FXML
-    private TableColumn<ModelPrescriptionTable, String> col_dose_unit;
+    private TableColumn<Prescription, String> col_dose_unit;
     @FXML
-    private TableColumn<ModelPrescriptionTable, String> col_admin_time;
+    private TableColumn<Prescription, String> col_admin_time;
     @FXML
-    private TableColumn<ModelPrescriptionTable, String> col_camper_id;
+    private TableColumn<Prescription, String> col_camper_id;
 
-    ObservableList<ModelPrescriptionTable> oblist = FXCollections.observableArrayList();
+    ObservableList<Prescription> oblist = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,7 +47,7 @@ public class ControllerPrescriptionTable implements Initializable {
         try (Connection con = DBDriver.getConnection()) {
             ResultSet rs = con.createStatement().executeQuery("select * from prescriptions");
             while (rs.next()) {
-                oblist.add(new ModelPrescriptionTable(
+                oblist.add(new Prescription(
                         rs.getString("id"),
                         rs.getString("name"),
                         rs.getString("dose"),

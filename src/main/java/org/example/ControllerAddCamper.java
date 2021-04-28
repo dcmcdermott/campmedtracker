@@ -17,7 +17,7 @@ import java.sql.*;
 public class ControllerAddCamper {
 
     // camper table list model
-    ObservableList<ModelCamperTable> oblist = FXCollections.observableArrayList();
+    ObservableList<Camper> oblist = FXCollections.observableArrayList();
 
     public TextField tfLastName;
     public TextField tfFirstName;
@@ -52,7 +52,7 @@ public class ControllerAddCamper {
             // update the campers table
             ResultSet rs = con.createStatement().executeQuery("select * from campers");
             while (rs.next()) {
-                oblist.add(new ModelCamperTable(
+                oblist.add(new Camper(
                         rs.getString("id"),
                         rs.getString("last_name"),
                         rs.getString("first_name"),

@@ -87,7 +87,7 @@
                      <effect>
                         <DropShadow />
                      </effect></Button>
-                  <Button fx:id="btnFinish" mnemonicParsing="false" onAction="#switchToCampers" scaleX="1.5" scaleY="1.5" style="-fx-background-color: green; -fx-font-weight: bold;" text="Finish" textFill="#fffdfd">
+                  <Button fx:id="btnAllergies" mnemonicParsing="false" onAction="#switchToAllergies" scaleX="1.5" scaleY="1.5" style="-fx-background-color: green; -fx-font-weight: bold;" text="Allergies" textFill="#fffdfd">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

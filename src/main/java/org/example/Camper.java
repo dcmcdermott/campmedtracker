@@ -6,17 +6,17 @@
 
 package org.example;
 
-public class ModelCamperTable {
+public class Camper {
 
     String id, last_name, first_name, dob, guardian, contact, note;
 
-    public ModelCamperTable(String id,
-                            String last_name,
-                            String first_name,
-                            String dob,
-                            String guardian,
-                            String contact,
-                            String note) {
+    public Camper(String id,
+                  String last_name,
+                  String first_name,
+                  String dob,
+                  String guardian,
+                  String contact,
+                  String note) {
 
         this.id = id;
         this.last_name = last_name;
