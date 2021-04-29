@@ -53,4 +53,8 @@ public class ControllerDashboard implements Initializable {
     private void switchToSearch() throws IOException {
         App.setRoot("search_camper");
     }
+    @FXML
+    private void switchToMedList() throws IOException {
+        App.setRoot("med_list");
+    }
 }

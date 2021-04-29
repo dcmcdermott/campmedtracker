@@ -65,7 +65,7 @@
                         <DropShadow />
                      </effect>
                   </Button>
-                  <Button fx:id="btnMedList" mnemonicParsing="false" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: DBE4EE;" text="📃">
+                  <Button fx:id="btnMedList" mnemonicParsing="false" onAction="#switchToMedList" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: DBE4EE;" text="📃">
                      <font>
                         <Font size="90.0" />
                      </font>
