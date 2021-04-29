@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #faf3e1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ControllerDashboard">
+<AnchorPane prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: #faf3e1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ControllerDashboard">
    <children>
-      <HBox alignment="BOTTOM_CENTER" prefWidth="1200.0" spacing="20.0" AnchorPane.bottomAnchor="575.0" AnchorPane.topAnchor="20.0">
+      <HBox alignment="BOTTOM_CENTER" layoutY="69.0" prefHeight="105.0" prefWidth="1200.0" spacing="20.0" AnchorPane.bottomAnchor="750.0" AnchorPane.topAnchor="69.0">
          <children>
             <ImageView fx:id="imgLogo" fitHeight="105.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
             <Label prefHeight="49.0" prefWidth="528.0" text="Adventure Camp Med Tracker">
@@ -20,7 +20,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox alignment="CENTER" layoutY="74.0" prefHeight="650.0" prefWidth="1200.0" spacing="20.0">
+      <VBox alignment="CENTER" prefHeight="974.0" prefWidth="1200.0" spacing="20.0">
          <children>
             <HBox alignment="BOTTOM_LEFT" prefHeight="16.0" prefWidth="1200.0">
                <children>

@@ -10,14 +10,16 @@ public class Prescription {
 
     int id, dose, time, camperid;
     String name, dose_unit;
+    boolean given_today;
 
-    public Prescription(int id, String name, int dose, String dose_unit, int time, int camperid) {
+    public Prescription(int id, String name, int dose, String dose_unit, int time, int camperid, boolean given_today) {
         this.id = id;
         this.name = name;
         this.dose = dose;
         this.dose_unit = dose_unit;
         this.time = time;
         this.camperid = camperid;
+        this.given_today = given_today;
     }
 
     public int getId() {
@@ -67,4 +69,8 @@ public class Prescription {
     public void setCamperid(int camperid) {
         this.camperid = camperid;
     }
+
+    public boolean getGiven_today() { return given_today; }
+
+    public void setGiven_today(boolean given_today) { this.given_today = given_today; }
 }

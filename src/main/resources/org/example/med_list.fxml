@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane style="-fx-background-color: #faf3e1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ControllerMedList">
+<AnchorPane prefHeight="900.0" style="-fx-background-color: #faf3e1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ControllerMedList">
     <children>
-        <VBox alignment="CENTER" prefHeight="700.0" prefWidth="1200.0" spacing="20.0">
+        <VBox alignment="CENTER" prefHeight="900.0" prefWidth="1200.0">
             <Label style="-fx-font-weight: bold;" text="Today's Medications">
                 <font>
                     <Font size="35.0" />
                 </font></Label>
-            <TableView fx:id="tvPrescriptions" maxWidth="-Infinity" prefHeight="500.0" prefWidth="900.0">
+            <TableView fx:id="tvPrescriptions" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="900.0">
                 <columns>
                     <TableColumn fx:id="col_p_id" prefWidth="75.0" text="Med ID" />
                     <TableColumn fx:id="col_p_med_name" prefWidth="75.0" text="Medication" />
@@ -22,6 +22,7 @@
                     <TableColumn fx:id="col_p_dose_unit" prefWidth="75.0" text="Dose Unit" />
                     <TableColumn fx:id="col_p_admin_time" prefWidth="75.0" text="Administration Time" />
                     <TableColumn fx:id="col_p_camper_id" prefWidth="75.0" text="Camper ID" />
+                    <TableColumn fx:id="col_p_given_today" prefWidth="75.0" text="Given" />
                 </columns>
                 <columnResizePolicy>
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -30,9 +31,30 @@
                     <Insets bottom="10.0" />
                 </VBox.margin>
             </TableView>
-            <Button fx:id="btnGiveMed" mnemonicParsing="false" onAction="#giveMed" scaleX="1.5" scaleY="1.5" style="-fx-background-color: green; -fx-font-weight: bold;" text="Give Medication" textFill="#fffdfd"/>
+         <HBox prefHeight="70.0" prefWidth="1200.0">
+            <children>
+               <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#showGivenMeds" opacity="0.48" prefHeight="15.0" prefWidth="200.0" text=" Show meds already given today">
+                  <HBox.margin>
+                     <Insets left="175.0" />
+                  </HBox.margin>
+               </Button>
+               <Label fx:id="checkmark" alignment="CENTER" maxHeight="-Infinity" prefHeight="80.0" prefWidth="100.0" text="✅" textAlignment="CENTER" textFill="#259e51" visible="false">
+                  <HBox.margin>
+                     <Insets left="175.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font size="67.0" />
+                  </font></Label>
+                  <Button fx:id="btnGiveMed" mnemonicParsing="false" onAction="#giveMed" scaleX="1.5" scaleY="1.5" style="-fx-background-color: green; -fx-font-weight: bold;" text="Give Medication" textFill="#fffdfd">
+                  <HBox.margin>
+                     <Insets left="240.0" />
+                  </HBox.margin>
+               </Button>
+            </children>
+         </HBox>
+         <Label fx:id="lblGivenMeds" text="Today's Administered Medications" />
 
-            <TableView fx:id="tvGivenMeds" maxWidth="-Infinity" prefHeight="500.0" prefWidth="900.0">
+            <TableView fx:id="tvGivenMeds" maxWidth="-Infinity" prefHeight="250.0" prefWidth="900.0">
                 <columns>
                     <TableColumn fx:id="col_gm_id" prefWidth="75.0" text="Med ID" />
                     <TableColumn fx:id="col_gm_med_name" prefWidth="75.0" text="Medication" />
@@ -45,7 +67,7 @@
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
                 <VBox.margin>
-                    <Insets bottom="10.0" />
+                    <Insets bottom="10.0" top="10.0" />
                 </VBox.margin>
             </TableView>
 

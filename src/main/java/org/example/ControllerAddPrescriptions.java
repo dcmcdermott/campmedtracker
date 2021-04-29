@@ -123,8 +123,8 @@ public class ControllerAddPrescriptions implements Initializable {
         try (Connection con = DBDriver.getConnection()) {
 
             // sql insert statement
-            String query = " insert into prescriptions (name, dose, dose_unit, time, camperid)"
-                    + " values (?, ?, ?, ?, ?)";
+            String query = " insert into prescriptions (name, dose, dose_unit, time, camperid, given_today)"
+                    + " values (?, ?, ?, ?, ?, ?)";
 
             // create sql prepared statement
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -133,6 +133,7 @@ public class ControllerAddPrescriptions implements Initializable {
             preparedStmt.setString (3, cbDoseUnit.getValue());
             preparedStmt.setString (4, cbTimes.getValue());
             preparedStmt.setInt (5, camperID);
+            preparedStmt.setBoolean (6, false);
 
             // execute the prepared statement
             preparedStmt.execute();
@@ -155,7 +156,8 @@ public class ControllerAddPrescriptions implements Initializable {
                         rs.getInt("dose"),
                         rs.getString("dose_unit"),
                         rs.getInt("time"),
-                        rs.getInt("camperid")));
+                        rs.getInt("camperid"),
+                        rs.getBoolean("given_today")));
 
             // update tableview and clear text fields
             tvNewMeds.setItems(oblist);

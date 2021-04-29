@@ -87,7 +87,8 @@ public class ControllerSearchCamper implements Initializable {
                         rs.getInt("dose"),
                         rs.getString("dose_unit"),
                         rs.getInt("time"),
-                        rs.getInt("camperid")));
+                        rs.getInt("camperid"),
+                        rs.getBoolean("given_today")));
             }
 
             // allergies sql statement
