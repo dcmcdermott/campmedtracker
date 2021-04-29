@@ -8,9 +8,10 @@ package org.example;
 
 public class Camper {
 
-    String id, last_name, first_name, dob, guardian, contact, note;
+    int id;
+    String last_name, first_name, dob, guardian, contact, note;
 
-    public Camper(String id,
+    public Camper(int id,
                   String last_name,
                   String first_name,
                   String dob,
@@ -28,11 +29,11 @@ public class Camper {
 
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

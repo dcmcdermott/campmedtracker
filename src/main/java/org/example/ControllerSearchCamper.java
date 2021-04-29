@@ -31,11 +31,11 @@ public class ControllerSearchCamper implements Initializable {
     @FXML
     private TableColumn<Prescription, String> col_med_name;
     @FXML
-    private TableColumn<Prescription, String> col_dose;
+    private TableColumn<Prescription, Integer> col_dose;
     @FXML
     private TableColumn<Prescription, String> col_dose_unit;
     @FXML
-    private TableColumn<Prescription, String> col_admin_time;
+    private TableColumn<Prescription, Integer> col_admin_time;
 
     ObservableList<Prescription> oblist = FXCollections.observableArrayList();
 
@@ -82,12 +82,12 @@ public class ControllerSearchCamper implements Initializable {
             ResultSet rs = preparedStmt.executeQuery();
             while (rs.next()) {
                 oblist.add(new Prescription(
-                        rs.getString("id"),
+                        rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("dose"),
+                        rs.getInt("dose"),
                         rs.getString("dose_unit"),
-                        rs.getString("time"),
-                        rs.getString("camperid")));
+                        rs.getInt("time"),
+                        rs.getInt("camperid")));
             }
 
             // allergies sql statement
@@ -104,10 +104,10 @@ public class ControllerSearchCamper implements Initializable {
             ResultSet rs2 = preparedStmt2.executeQuery();
             while (rs2.next()) {
                 oblist2.add(new Allergy(
-                        rs2.getString("id"),
+                        rs2.getInt("id"),
                         rs2.getString("name"),
                         rs2.getString("reaction"),
-                        rs2.getString("camperid")));
+                        rs2.getInt("camperid")));
             }
 
             // clear text fields

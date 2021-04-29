@@ -8,6 +8,7 @@ package org.example;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -27,17 +28,17 @@ public class ControllerPrescriptionTable implements Initializable {
     @FXML
     private TableView<Prescription> tvPrescriptions;
     @FXML
-    private TableColumn<Prescription, String> col_id;
+    private TableColumn<Prescription, Integer> col_id;
     @FXML
     private TableColumn<Prescription, String> col_med_name;
     @FXML
-    private TableColumn<Prescription, String> col_dose;
+    private TableColumn<Prescription, Integer> col_dose;
     @FXML
     private TableColumn<Prescription, String> col_dose_unit;
     @FXML
-    private TableColumn<Prescription, String> col_admin_time;
+    private TableColumn<Prescription, Integer> col_admin_time;
     @FXML
-    private TableColumn<Prescription, String> col_camper_id;
+    private TableColumn<Prescription, Integer> col_camper_id;
 
     ObservableList<Prescription> oblist = FXCollections.observableArrayList();
 
@@ -48,12 +49,12 @@ public class ControllerPrescriptionTable implements Initializable {
             ResultSet rs = con.createStatement().executeQuery("select * from prescriptions");
             while (rs.next()) {
                 oblist.add(new Prescription(
-                        rs.getString("id"),
+                        rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("dose"),
+                        rs.getInt("dose"),
                         rs.getString("dose_unit"),
-                        rs.getString("time"),
-                        rs.getString("camperid")));
+                        rs.getInt("time"),
+                        rs.getInt("camperid")));
             }
         }
         catch (SQLException throwables) {
@@ -77,5 +78,11 @@ public class ControllerPrescriptionTable implements Initializable {
     @FXML
     private void switchToDashboard() throws IOException {
         App.setRoot("dashboard");
+    }
+
+    @FXML
+    private void remove() {
+        //tvPrescriptions.getItems().removeAll(tvPrescriptions.getSelectionModel().getSelectedItem());
+        System.out.println(tvPrescriptions.getSelectionModel().getSelectedItem().name);
     }
 }

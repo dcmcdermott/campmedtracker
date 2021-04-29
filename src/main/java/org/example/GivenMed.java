@@ -2,11 +2,12 @@ package org.example;
 
 public class GivenMed {
 
-    int id, dose, camperid;
+    int id, medid, dose, camperid;
     String name, dose_unit, time_given;
 
-    public GivenMed(int id, int dose, int camperid, String name, String dose_unit, String time_given) {
+    public GivenMed(int id, String name, int medid, int dose, String dose_unit, String time_given, int camperid) {
         this.id = id;
+        this.medid = medid;
         this.dose = dose;
         this.camperid = camperid;
         this.name = name;
@@ -14,11 +15,15 @@ public class GivenMed {
         this.time_given = time_given;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
     public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getMedid() { return id; }
+
+    public void setMedid(int id) {
         this.id = id;
     }
 

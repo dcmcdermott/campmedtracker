@@ -25,7 +25,7 @@ public class ControllerAddPrescriptions implements Initializable {
     public TextField tfDose;
     public Button btnAdd;
     public Button btnCancel;
-    public String camperID = ControllerAddCamper.currentCamperID;
+    public int camperID = ControllerAddCamper.currentCamperID;
     ObservableList<String> doseUnits = FXCollections.observableArrayList(
             "g",
                 "mg",
@@ -74,11 +74,11 @@ public class ControllerAddPrescriptions implements Initializable {
     @FXML
     private TableColumn<Prescription, String> col_med_name_new;
     @FXML
-    private TableColumn<Prescription, String> col_dose_new;
+    private TableColumn<Prescription, Integer> col_dose_new;
     @FXML
     private TableColumn<Prescription, String> col_dose_unit_new;
     @FXML
-    private TableColumn<Prescription, String> col_admin_time_new;
+    private TableColumn<Prescription, Integer> col_admin_time_new;
 
 
     @FXML
@@ -96,7 +96,7 @@ public class ControllerAddPrescriptions implements Initializable {
             String query = "select first_name, last_name from campers where id = ?";
 
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setString (1, camperID);
+            preparedStmt.setInt (1, camperID);
 
             ResultSet rs = preparedStmt.executeQuery();
 
@@ -132,7 +132,7 @@ public class ControllerAddPrescriptions implements Initializable {
             preparedStmt.setString (2, tfDose.getText());
             preparedStmt.setString (3, cbDoseUnit.getValue());
             preparedStmt.setString (4, cbTimes.getValue());
-            preparedStmt.setString (5, camperID);
+            preparedStmt.setInt (5, camperID);
 
             // execute the prepared statement
             preparedStmt.execute();
@@ -142,7 +142,7 @@ public class ControllerAddPrescriptions implements Initializable {
 
             // create sql prepared statement
             PreparedStatement preparedStmt2 = con.prepareStatement(query2);
-            preparedStmt2.setString (1, camperID);
+            preparedStmt2.setInt (1, camperID);
 
             // execute the prepared statement
             ResultSet rs = preparedStmt2.executeQuery();
@@ -150,12 +150,12 @@ public class ControllerAddPrescriptions implements Initializable {
             // update the observable list
             while (rs.next()) {
                 oblist.add(new Prescription(
-                        rs.getString("id"),
+                        rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("dose"),
+                        rs.getInt("dose"),
                         rs.getString("dose_unit"),
-                        rs.getString("time"),
-                        rs.getString("camperid")));
+                        rs.getInt("time"),
+                        rs.getInt("camperid")));
 
             // update tableview and clear text fields
             tvNewMeds.setItems(oblist);

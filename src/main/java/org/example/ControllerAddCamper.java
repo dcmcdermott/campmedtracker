@@ -21,12 +21,11 @@ public class ControllerAddCamper {
 
     public TextField tfLastName;
     public TextField tfFirstName;
-    public TextField tfDOB;
     public DatePicker dpDOB;
     public TextField tfGuardian;
     public TextField tfContact;
     public TextField tfNote;
-    public static String currentCamperID;
+    public static int currentCamperID;
 
     @FXML
     private void addCamper() throws IOException {
@@ -53,7 +52,7 @@ public class ControllerAddCamper {
             ResultSet rs = con.createStatement().executeQuery("select * from campers");
             while (rs.next()) {
                 oblist.add(new Camper(
-                        rs.getString("id"),
+                        rs.getInt("id"),
                         rs.getString("last_name"),
                         rs.getString("first_name"),
                         rs.getString("dob"),
@@ -64,7 +63,7 @@ public class ControllerAddCamper {
 
             ResultSet rs2 =preparedStmt.getGeneratedKeys();
             if (rs2.next()) {
-                currentCamperID = rs2.getString(1);
+                currentCamperID = rs2.getInt(1);
             }
 
             System.out.println("Camper added successfully");

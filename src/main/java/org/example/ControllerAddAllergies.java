@@ -25,7 +25,7 @@ public class ControllerAddAllergies implements Initializable {
     public TextField tfReaction;
     public Button btnAdd;
     public Button btnCancel;
-    public String camperID = ControllerAddCamper.currentCamperID;
+    public int camperID = ControllerAddCamper.currentCamperID;
 
     // setup table view
     @FXML
@@ -44,7 +44,7 @@ public class ControllerAddAllergies implements Initializable {
             String query = "select first_name, last_name from campers where id = ?";
 
             PreparedStatement preparedStmt = con.prepareStatement(query);
-            preparedStmt.setString (1, camperID);
+            preparedStmt.setInt (1, camperID);
 
             ResultSet rs = preparedStmt.executeQuery();
 
@@ -78,7 +78,7 @@ public class ControllerAddAllergies implements Initializable {
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setString (1, tfAllergyName.getText());
             preparedStmt.setString (2, tfReaction.getText());
-            preparedStmt.setString (3, camperID);
+            preparedStmt.setInt (3, camperID);
 
             // execute the prepared statement
             preparedStmt.execute();
@@ -88,7 +88,7 @@ public class ControllerAddAllergies implements Initializable {
 
             // create sql prepared statement
             PreparedStatement preparedStmt2 = con.prepareStatement(query2);
-            preparedStmt2.setString (1, camperID);
+            preparedStmt2.setInt (1, camperID);
 
             // execute the prepared statement
             ResultSet rs = preparedStmt2.executeQuery();
@@ -96,10 +96,10 @@ public class ControllerAddAllergies implements Initializable {
             // update the observable list
             while (rs.next()) {
                 oblist.add(new Allergy(
-                        rs.getString("id"),
+                        rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("reaction"),
-                        rs.getString("camperid")));
+                        rs.getInt("camperid")));
 
                 // update tableview and clear text fields
                 tvNewAllergies.setItems(oblist);

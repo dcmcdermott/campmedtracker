@@ -8,9 +8,10 @@ package org.example;
 
 public class Prescription {
 
-    String id, name, dose, dose_unit, time, camperid;
+    int id, dose, time, camperid;
+    String name, dose_unit;
 
-    public Prescription(String id, String name, String dose, String dose_unit, String time, String camperid) {
+    public Prescription(int id, String name, int dose, String dose_unit, int time, int camperid) {
         this.id = id;
         this.name = name;
         this.dose = dose;
@@ -19,11 +20,11 @@ public class Prescription {
         this.camperid = camperid;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -35,7 +36,7 @@ public class Prescription {
         this.name = name;
     }
 
-    public String getDose() {
+    public int getDose() {
         return dose;
     }
 
@@ -47,23 +48,23 @@ public class Prescription {
         return dose_unit;
     }
 
-    public void setDose_unit(String dose) {
+    public void setDose_unit(int dose) {
         this.dose = dose;
     }
 
-    public String getTime() {
+    public int getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(int time) {
         this.time = time;
     }
 
-    public String getCamperid() {
+    public int getCamperid() {
         return camperid;
     }
 
-    public void setCamperid(String camperid) {
+    public void setCamperid(int camperid) {
         this.camperid = camperid;
     }
 }

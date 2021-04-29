@@ -48,7 +48,7 @@ public class ControllerCamperTable implements Initializable {
         try (Connection con = DBDriver.getConnection()) {
             ResultSet rs = con.createStatement().executeQuery("select * from campers");
             while (rs.next()) {
-                oblist.add(new Camper(rs.getString("id"),
+                oblist.add(new Camper(rs.getInt("id"),
                         rs.getString("last_name"),
                         rs.getString("first_name"),
                         rs.getString("dob"),
