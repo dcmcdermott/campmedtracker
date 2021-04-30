@@ -52,14 +52,6 @@
                             <DropShadow />
                         </effect>
                     </Button>
-                    <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#remove" style="-fx-background-color: DBE4EE;" text="Remove">
-                        <cursor>
-                            <Cursor fx:constant="HAND" />
-                        </cursor>
-                        <effect>
-                            <DropShadow />
-                        </effect>
-                    </Button>
                 </children>
             </HBox>
 

@@ -85,14 +85,14 @@
                         <Insets left="235.0" />
                      </HBox.margin>
                   </Label>
-                  <Label text="View Meds">
+                  <Label text="View Prescriptions">
                      <HBox.margin>
                         <Insets left="245.0" />
                      </HBox.margin>
                   </Label>
                   <Label text="About">
                      <HBox.margin>
-                        <Insets left="295.0" />
+                        <Insets left="255.0" />
                      </HBox.margin>
                   </Label>
                </children>

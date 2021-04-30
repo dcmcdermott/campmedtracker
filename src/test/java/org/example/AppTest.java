@@ -1,67 +1,20 @@
-/**
- * Author: Devin McDermott
- * Adventure Camp Med Tracker
- * April 2021
- */
-
 package org.example;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
+import org.junit.Test;
 
-import java.io.IOException;
-import java.sql.*;
-import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-/**
- * JavaFX App
- */
-public class App extends Application {
+import static org.junit.Assert.*;
 
-    private static Scene scene;
+public class AppTest {
 
-    // setup stage
-    @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("dashboard"), 1200, 900);
-        stage.getIcons().add(new Image("https://cdn.iconscout.com/icon/free/png-512/drugs-26-129384.png"));
-        stage.setTitle("Adventure Camp Med Tracker");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    // set root function
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    // load FXML function
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
-
-    // Main
-    public static void main(String[] args) {
-
-        // check the date and update db if date changed since last use
-        checkDate();
-
-        // launch app
-        launch();
-    }
-
-    // Compare current date with working date in db and update prescriptions given status to false if new date
-    static void checkDate() {
-
+    @Test
+    public void checkDate() {
         // get current date
         String currentDate = java.time.LocalDate.now().toString();
 
@@ -108,5 +61,7 @@ public class App extends Application {
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        assertEquals(currentDate, java.time.LocalDate.now().toString());
     }
+
 }

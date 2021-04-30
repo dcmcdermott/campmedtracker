@@ -42,16 +42,16 @@ public class Prescription {
         return dose;
     }
 
-    public void setDose(String dose_unit) {
-        this.dose_unit = dose_unit;
+    public void setDose(int dose) {
+        this.dose = dose;
     }
 
     public String getDose_unit() {
         return dose_unit;
     }
 
-    public void setDose_unit(int dose) {
-        this.dose = dose;
+    public void setDose_unit(String dose_unit) {
+        this.dose_unit = dose_unit;
     }
 
     public int getTime() {
