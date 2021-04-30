@@ -18,6 +18,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
+// controller for add_allergies.fxml
 public class ControllerAddAllergies implements Initializable {
 
     public Label lblCamperName;
@@ -27,7 +28,7 @@ public class ControllerAddAllergies implements Initializable {
     public Button btnCancel;
     public int camperID = ControllerAddCamper.currentCamperID;
 
-    // setup table view
+    // allergy table definition
     @FXML
     private TableView<Allergy> tvNewAllergies;
     @FXML
@@ -35,17 +36,21 @@ public class ControllerAddAllergies implements Initializable {
     @FXML
     private TableColumn<Allergy, String> col_reaction;
 
+    // initialize
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
 
+        // get current camper name and show in camper name label
         try (Connection con = DBDriver.getConnection()) {
 
-            // mysql statement
+            // sql query
             String query = "select first_name, last_name from campers where id = ?";
 
+            // create prepared statement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt (1, camperID);
 
+            // exedcute query and get result set
             ResultSet rs = preparedStmt.executeQuery();
 
             String lname = "";
@@ -63,6 +68,7 @@ public class ControllerAddAllergies implements Initializable {
         }
     }
 
+    // add an allergy for a camper
     @FXML
     private void addAllergy() throws IOException {
 
@@ -70,11 +76,12 @@ public class ControllerAddAllergies implements Initializable {
 
         try (Connection con = DBDriver.getConnection()) {
 
-            // sql insert statement
+            // Q1
+            // sql insert allergy statement
             String query = " insert into allergies (name, reaction, camperid)"
                     + " values (?, ?, ?)";
 
-            // create sql prepared statement
+            // create sql prepared statement (get data from text fields)
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setString (1, tfAllergyName.getText());
             preparedStmt.setString (2, tfReaction.getText());
@@ -83,7 +90,8 @@ public class ControllerAddAllergies implements Initializable {
             // execute the prepared statement
             preparedStmt.execute();
 
-            // sql new user prescriptions statement
+            // Q2
+            // sql get allergies for current camper
             String query2 = "select * from allergies where camperid = ?";
 
             // create sql prepared statement
@@ -105,8 +113,6 @@ public class ControllerAddAllergies implements Initializable {
                 tvNewAllergies.setItems(oblist);
                 tfAllergyName.clear();
                 tfReaction.clear();
-
-                System.out.println("Allergies added successfully");
             }
         }
         catch (SQLException throwables) {
@@ -119,11 +125,13 @@ public class ControllerAddAllergies implements Initializable {
         tvNewAllergies.setItems(oblist);
     }
 
+    // when add cancel button is clicked navigate back to add camper
     @FXML
     private void switchToAddCamper() throws IOException {
         App.setRoot("add_camper");
     }
 
+    // when campers button is clicked navigate to camper table
     @FXML
     private void switchToCampers() throws IOException {
         App.setRoot("camper_table");

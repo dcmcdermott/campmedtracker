@@ -27,6 +27,7 @@ public class App extends Application {
 
     private static Scene scene;
 
+    // setup stage
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("dashboard"), 1200, 900);
@@ -37,29 +38,39 @@ public class App extends Application {
         stage.show();
     }
 
+    // set root function
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
+    // load FXML function
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
+    // Main
     public static void main(String[] args) {
 
+        // check the date and update db if date changed since last use
         checkDate();
 
+        // launch app
         launch();
     }
 
+    // Compare current date with working date in db and update prescriptions given status to false if new date
     private static void checkDate() {
 
+        // get current date
         String currentDate = java.time.LocalDate.now().toString();
+
 
         try (Connection con = DBDriver.getConnection()) {
 
+            // get working date from db
             ObservableList<WorkingDate> oblist = FXCollections.observableArrayList();
+
             ResultSet rs = con.createStatement().executeQuery("select * from date");
 
             if (rs.next()) {
@@ -68,22 +79,30 @@ public class App extends Application {
 
             String workingDate = oblist.get(0).working_date;
 
+            // if the date changed update prescription table given_today column values all to false for the new day
             if (!workingDate.equals(currentDate)) {
 
+                // Q1
+                // set all prescriptions given_today to false
                 String query = "update prescriptions set given_today = 0 where given_today = 1";
 
+                // create prepared statement
                 PreparedStatement preparedStmt = con.prepareStatement(query);
+
+                // execute prepared statement
                 preparedStmt.execute();
 
+                // Q2
+                // update working date to today's date
                 String query2 = "update date set working_date = ? where working_date = ?";
 
+                // create prepared statement
                 PreparedStatement preparedStmt2 = con.prepareStatement(query2);
                 preparedStmt2.setString (1, currentDate);
                 preparedStmt2.setString (2, workingDate);
 
+                // execute prepared statement
                 preparedStmt2.execute();
-
-                System.out.println("given today reset!");
             }
         }
         catch (SQLException throwables) {

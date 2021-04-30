@@ -1,3 +1,9 @@
+/*
+ * Author: Devin McDermott
+ * Adventure Camp Med Tracker
+ * April 2021
+ */
+
 package org.example;
 
 import javafx.collections.FXCollections;
@@ -13,7 +19,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-
+// controller class for search_camper.fxml
 public class ControllerSearchCamper implements Initializable {
 
     public TextField tfFirstName;
@@ -25,7 +31,7 @@ public class ControllerSearchCamper implements Initializable {
     public Label lblContact;
     public VBox vbResults;
 
-    // prescriptions table
+    // prescriptions table definition
     @FXML
     private TableView<Prescription> tvMeds;
     @FXML
@@ -39,7 +45,7 @@ public class ControllerSearchCamper implements Initializable {
 
     ObservableList<Prescription> oblist = FXCollections.observableArrayList();
 
-    // allergy table
+    // allergy table definition
     @FXML
     private TableView<Allergy> tvAllergies;
     @FXML
@@ -49,9 +55,11 @@ public class ControllerSearchCamper implements Initializable {
 
     ObservableList<Allergy> oblist2 = FXCollections.observableArrayList();
 
-    // hide results box until search happens
+    // initialize
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // hide results box until search happens
         vbResults.setVisible(false);
     }
 
@@ -66,6 +74,7 @@ public class ControllerSearchCamper implements Initializable {
         // get camper id and info
         String camperID = getCamper();
 
+        // get prescriptions and allergies for searched camper
         try (Connection con = DBDriver.getConnection()) {
 
             // prescriptions sql statement
@@ -176,7 +185,7 @@ public class ControllerSearchCamper implements Initializable {
         return camperID;
     }
 
-    // switch to dashboard view
+    // when the home button is clicked, navigate to dashboard view
     @FXML
     private void switchToDashboard() throws IOException {
         App.setRoot("dashboard");

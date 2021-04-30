@@ -21,8 +21,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+// controller class for camper_table.fxml
 public class ControllerCamperTable implements Initializable {
 
+    // camper table definition
     @FXML
     private TableView<Camper> tvCampers;
     @FXML
@@ -42,9 +44,11 @@ public class ControllerCamperTable implements Initializable {
 
     ObservableList<Camper> oblist = FXCollections.observableArrayList();
 
+    // initialize
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // get all campers from db and store them as camper objects in oblist
         try (Connection con = DBDriver.getConnection()) {
             ResultSet rs = con.createStatement().executeQuery("select * from campers");
             while (rs.next()) {
@@ -61,6 +65,7 @@ public class ControllerCamperTable implements Initializable {
             throwables.printStackTrace();
         }
 
+        // set cell value factories for campers table columns
         col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_last_name.setCellValueFactory(new PropertyValueFactory<>("last_name"));
         col_first_name.setCellValueFactory(new PropertyValueFactory<>("first_name"));
@@ -69,17 +74,23 @@ public class ControllerCamperTable implements Initializable {
         col_contact.setCellValueFactory(new PropertyValueFactory<>("contact"));
         col_note.setCellValueFactory(new PropertyValueFactory<>("note"));
 
+        // apply oblist to campers table
         tvCampers.setItems(oblist);
     }
 
+    // when the prescriptions button is clicked, navigate to prescription table
     @FXML
     private void switchToPrescriptions() throws IOException {
         App.setRoot("prescription_table");
     }
+
+    // when the add camper button is clicked, navigate to add camper
     @FXML
     private void switchToAddCamper() throws IOException {
         App.setRoot("add_camper");
     }
+
+    // when the home button is clicked, navigate to dashboard
     @FXML
     private void switchToDashboard() throws IOException {
         App.setRoot("dashboard");

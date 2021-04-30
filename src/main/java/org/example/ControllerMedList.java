@@ -1,13 +1,16 @@
+/*
+ * Author: Devin McDermott
+ * Adventure Camp Med Tracker
+ * April 2021
+ */
+
 package org.example;
 
 import javafx.animation.PauseTransition;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,15 +21,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+// controller class for med_list.fxml
 public class ControllerMedList implements Initializable {
-
 
     public Label checkmark;
     public Label lblGivenMeds;
 
+    // prescriptions table definition
     @FXML
     private TableView<Prescription> tvPrescriptions;
     @FXML
@@ -41,11 +46,10 @@ public class ControllerMedList implements Initializable {
     private TableColumn<Prescription, Integer> col_p_admin_time;
     @FXML
     private TableColumn<Prescription, Integer> col_p_camper_id;
-    @FXML
-    private TableColumn<Prescription, Boolean> col_p_given_today;
 
     ObservableList<Prescription> oblist = FXCollections.observableArrayList();
 
+    // meds given today table definition
     @FXML
     private TableView<GivenMed> tvGivenMeds;
     @FXML
@@ -63,16 +67,22 @@ public class ControllerMedList implements Initializable {
 
     ObservableList<GivenMed> oblist2 = FXCollections.observableArrayList();
 
+    // initialize med list
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // hide the given meds table by default
         tvGivenMeds.setVisible(false);
         lblGivenMeds.setVisible(false);
 
+        // get prescriptions that have not been given today from db and put in an oblist
         try (Connection con = DBDriver.getConnection()) {
-            ResultSet rs = con.createStatement().executeQuery("select * from prescriptions");
-            while (rs.next()) {
 
+            // query db and get result set
+            ResultSet rs = con.createStatement().executeQuery("select * from prescriptions");
+
+            // fill oblist with prescription objects from result set only if they have not already been given today
+            while (rs.next()) {
                 if (!rs.getBoolean("given_today")){
                     oblist.add(new Prescription(
                             rs.getInt("id"),
@@ -89,38 +99,45 @@ public class ControllerMedList implements Initializable {
             throwables.printStackTrace();
         }
 
+        // set cell value factories for today's med list (prescriptions table) columns
         col_p_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_p_med_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_p_dose.setCellValueFactory(new PropertyValueFactory<>("dose"));
         col_p_dose_unit.setCellValueFactory(new PropertyValueFactory<>("dose_unit"));
         col_p_admin_time.setCellValueFactory(new PropertyValueFactory<>("time"));
         col_p_camper_id.setCellValueFactory(new PropertyValueFactory<>("camperid"));
-        col_p_given_today.setCellValueFactory(new PropertyValueFactory<>("given_today"));
 
+        // apply oblist data to today's med list (prescriptions table)
         tvPrescriptions.setItems(oblist);
 
-        requestGivenMeds();
+        // get given meds data from db and fill given meds table
+        try {
+            requestGivenMeds();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
+    // When give medication button is clicked
     @FXML
-    private void giveMed() {
+    private void giveMed() throws Exception {
 
-        // get data from currently selected row
+        // get data from currently selected row and current time
         int c_medid = tvPrescriptions.getSelectionModel().getSelectedItem().id;
         int c_dose = tvPrescriptions.getSelectionModel().getSelectedItem().dose;
         int c_camperid = tvPrescriptions.getSelectionModel().getSelectedItem().camperid;
         String c_name = tvPrescriptions.getSelectionModel().getSelectedItem().name;
         String c_dose_unit = tvPrescriptions.getSelectionModel().getSelectedItem().dose_unit;
-        String c_time = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+        String c_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
+        // remove the given med from today's med list
         tvPrescriptions.getItems().removeAll(tvPrescriptions.getSelectionModel().getSelectedItem());
-        System.out.println(tvPrescriptions.getSelectionModel().getSelectedItem().name);
 
         try (Connection con = DBDriver.getConnection()) {
 
-
-            // Q1
-            // mysql statement
+            // Q1 update given today to true for selected med
+            // sql statement
             String query1 = "update prescriptions set given_today = 1 where id = ?";
 
             // create sql prepared statement
@@ -130,8 +147,8 @@ public class ControllerMedList implements Initializable {
             // execute the prepared statement
             preparedStmt1.execute();
 
-            // Q2
-            // mysql statement
+            // Q2 add selected med to the given meds table
+            // sql statement
             String query2 = " insert into given_meds (name, medid, dose, dose_unit, time_given, camperid)"
                     + " values (?, ?, ?, ?, ?, ?)";
 
@@ -151,33 +168,51 @@ public class ControllerMedList implements Initializable {
         catch (SQLException throwables) {
                 throwables.printStackTrace();
         }
+
+        // refresh given meds table
         requestGivenMeds();
 
+        // show green confirmation checkmark for a sec when med is given
         checkmark.setVisible(true);
         PauseTransition pause = new PauseTransition(Duration.seconds(1));
         pause.setOnFinished(e -> checkmark.setVisible(false));
         pause.play();
     }
 
+    // gets given_meds table from db and show in given meds table but only if meds was given today
     @FXML
-    private void requestGivenMeds() {
+    private void requestGivenMeds() throws Exception{
 
+        // clear the table of old data
         tvGivenMeds.getItems().clear();
 
+        // get given meds from db and show in table if given today
         try (Connection con = DBDriver.getConnection()) {
 
+            // query db and get result set
             ResultSet rs2 = con.createStatement().executeQuery("select * from given_meds");
+
+            // fill oblist2 with GivenMed objects
             while (rs2.next()) {
-                oblist2.add(new GivenMed(
-                        rs2.getInt("id"),
-                        rs2.getString("name"),
-                        rs2.getInt("medid"),
-                        rs2.getInt("dose"),
-                        rs2.getString("dose_unit"),
-                        rs2.getString("time_given"),
-                        rs2.getInt("camperid")));
+
+                // get date given for each med and today's date
+                String given_date = rs2.getString("time_given").split("\\s")[0];
+                String current_date = LocalDate.now().toString();
+
+                // if given date is today, add med to oblist2
+                if (given_date.equals(current_date)) {
+                    oblist2.add(new GivenMed(
+                            rs2.getInt("id"),
+                            rs2.getString("name"),
+                            rs2.getInt("medid"),
+                            rs2.getInt("dose"),
+                            rs2.getString("dose_unit"),
+                            rs2.getString("time_given"),
+                            rs2.getInt("camperid")));
+                }
             }
 
+            // set cell factory values for given meds table
             col_gm_id.setCellValueFactory(new PropertyValueFactory<>("medid"));
             col_gm_med_name.setCellValueFactory(new PropertyValueFactory<>("name"));
             col_gm_dose.setCellValueFactory(new PropertyValueFactory<>("dose"));
@@ -185,14 +220,15 @@ public class ControllerMedList implements Initializable {
             col_gm_given_at.setCellValueFactory(new PropertyValueFactory<>("time_given"));
             col_gm_camper_id.setCellValueFactory(new PropertyValueFactory<>("camperid"));
 
+            // apply oblist2 to given meds table
             tvGivenMeds.setItems(oblist2);
         }
         catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 
+    // When show given meds button is clicked toggle visiblity of given meds table and label
     @FXML
     private void showGivenMeds() {
 
@@ -206,8 +242,15 @@ public class ControllerMedList implements Initializable {
         }
     }
 
+    // When home button is clicked navigate to dashboard
     @FXML
     private void switchToDashboard() throws IOException {
         App.setRoot("dashboard");
+    }
+
+    // When campers button is clicked navigate to dashboard
+    @FXML
+    private void switchToCampers() throws IOException {
+        App.setRoot("camper_table");
     }
 }

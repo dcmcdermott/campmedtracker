@@ -22,7 +22,6 @@
                     <TableColumn fx:id="col_p_dose_unit" prefWidth="75.0" text="Dose Unit" />
                     <TableColumn fx:id="col_p_admin_time" prefWidth="75.0" text="Administration Time" />
                     <TableColumn fx:id="col_p_camper_id" prefWidth="75.0" text="Camper ID" />
-                    <TableColumn fx:id="col_p_given_today" prefWidth="75.0" text="Given" />
                 </columns>
                 <columnResizePolicy>
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -84,7 +83,7 @@
                             <DropShadow blurType="ONE_PASS_BOX" />
                         </effect>
                     </Button>
-                    <Button fx:id="btnSwitchToDashboard" mnemonicParsing="false" onAction="#switchToDashboard" style="-fx-background-color: DBE4EE;" text="🙋‍♂️ Campers">
+                    <Button fx:id="btnSwitchToCampers" mnemonicParsing="false" onAction="#switchToCampers" style="-fx-background-color: DBE4EE;" text="🙋‍♂️ Campers">
                         <cursor>
                             <Cursor fx:constant="HAND" />
                         </cursor>

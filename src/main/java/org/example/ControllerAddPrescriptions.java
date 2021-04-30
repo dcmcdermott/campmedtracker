@@ -18,6 +18,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
+// controller class for add_prescriptions.fxml
 public class ControllerAddPrescriptions implements Initializable {
 
     public Label lblCamperName;
@@ -26,6 +27,8 @@ public class ControllerAddPrescriptions implements Initializable {
     public Button btnAdd;
     public Button btnCancel;
     public int camperID = ControllerAddCamper.currentCamperID;
+
+    // setup choice boxes
     ObservableList<String> doseUnits = FXCollections.observableArrayList(
             "g",
                 "mg",
@@ -80,7 +83,7 @@ public class ControllerAddPrescriptions implements Initializable {
     @FXML
     private TableColumn<Prescription, Integer> col_admin_time_new;
 
-
+    // initialize
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -92,12 +95,14 @@ public class ControllerAddPrescriptions implements Initializable {
 
         try (Connection con = DBDriver.getConnection()) {
 
-            // mysql statement
+            // sql query get current camper name
             String query = "select first_name, last_name from campers where id = ?";
 
+            // create prepared statement
             PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt (1, camperID);
 
+            // execute prepared statement and get result set
             ResultSet rs = preparedStmt.executeQuery();
 
             String lname = "";
@@ -108,6 +113,7 @@ public class ControllerAddPrescriptions implements Initializable {
                 fname = rs.getString("first_name");
             }
 
+            // show current camper name in label
             lblCamperName.setText(fname + " " + lname);
         }
         catch (SQLException throwables) {
@@ -115,6 +121,7 @@ public class ControllerAddPrescriptions implements Initializable {
         }
     }
 
+    // add prescriptions for a new camper
     @FXML
     private void addPrescriptions() throws IOException {
 
@@ -122,7 +129,8 @@ public class ControllerAddPrescriptions implements Initializable {
 
         try (Connection con = DBDriver.getConnection()) {
 
-            // sql insert statement
+            // Q1
+            // sql insert statement to add a new prescription
             String query = " insert into prescriptions (name, dose, dose_unit, time, camperid, given_today)"
                     + " values (?, ?, ?, ?, ?, ?)";
 
@@ -138,7 +146,8 @@ public class ControllerAddPrescriptions implements Initializable {
             // execute the prepared statement
             preparedStmt.execute();
 
-            // sql new user prescriptions statement
+            // Q2
+            // sql get all prescriptions for current camper
             String query2 = "select * from prescriptions where camperid = ?";
 
             // create sql prepared statement
@@ -163,8 +172,6 @@ public class ControllerAddPrescriptions implements Initializable {
             tvNewMeds.setItems(oblist);
             tfMedName.clear();
             tfDose.clear();
-
-            System.out.println("Prescriptions added successfully");
             }
         }
         catch (SQLException throwables) {
@@ -179,11 +186,13 @@ public class ControllerAddPrescriptions implements Initializable {
         tvNewMeds.setItems(oblist);
     }
 
+    // when the back button is clicked, navigate to add camper
     @FXML
     private void switchToAddCamper() throws IOException {
         App.setRoot("add_camper");
     }
 
+    // when the allergies button is clicked, navigate to add allergies
     @FXML
     private void switchToAllergies() throws IOException {
         App.setRoot("add_allergies");
